@@ -29,4 +29,5 @@ class ControllerBase extends Controller
 	$footerCollection->addJs("js/bootstrap.min.js");
 	*/
 
+
 }
