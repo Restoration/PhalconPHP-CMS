@@ -82,12 +82,8 @@
 
 {% endif %}
 
-
-
-
-
-
-
-
     <!-- Custom Theme Scripts -->
     {{ javascript_include("public/js/custom.min.js") }}
+
+    <!-- Original Scripts -->
+    {{ javascript_include("public/js/function.js") }}
