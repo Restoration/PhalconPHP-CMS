@@ -4,6 +4,7 @@ use Phalcon\Mvc\Model as Model;
 use Phalcon\Validation as Validation;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Validation\Validator\StringLength as StringLength;
+use Phalcon\Http\Response as Response;
 
 
 class PostController extends ControllerBase
@@ -16,11 +17,30 @@ class PostController extends ControllerBase
 
     }
 
+	// Call this func to set json response enabled
+	public function setJsonResponse() {
+		$this->view->disable();
+		$this->_isJsonResponse = true;
+		$this->response->setContentType('application/json', 'UTF-8');
+	}
 
     public function indexAction()
     {
-	    $this->view->setTemplateAfter('common');
+        $this->view->setTemplateAfter('common');
+    }
 
+    public function ajaxGetPostAction()
+    {
+        $post = new trn_post();
+        $response = new Response();
+        $result = $post->getResult();
+		$status      = 200;
+		$description = 'OK';
+		$contentType = 'application/json';
+		$response->setStatusCode($status, $description);
+		$response->setContentType($contentType, 'UTF-8');
+        $response->setContent(json_encode($result));
+        return $response;
     }
 
     public function editAction()

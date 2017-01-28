@@ -2,6 +2,8 @@
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Behavior\Timestampable as Timestampable;
+use Phalcon\Db\Adapter\Pdo\Mysql as Mysql;
+use Phalcon\Mvc\Model\Query;
 
 /**
  * Post
@@ -34,4 +36,11 @@ class trn_post extends Model
             ),
         )));
     }
+    public function getResult()
+    {
+		$sql = 'SELECT * FROM trn_post';
+		$query = new Query($sql,$this->getDI());
+		$result = $query->execute();
+		return $result;
+	}
 }
