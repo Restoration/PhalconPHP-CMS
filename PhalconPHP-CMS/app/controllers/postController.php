@@ -27,24 +27,22 @@ class PostController extends ControllerBase
         return $response;
     }
 
-    public function editAction($id)
+    public function editAction()
     {
 	    $this->view->setTemplateAfter('common');
-	    $id = $this->request->getPost("id", "int");
+	    $id = $this->request->get("id", "int");
 	    if(!empty($id)){
-		    exit();
+		    $result = trn_post::findFirst($id);
+		    $this->view->setVar("post",$result);
 	    }
     }
-
 
     public function saveAction($id)
     {
 	    if (!$this->request->isPost()) {
 		    return $this->response->redirect("post/edit");
 	    }
-	    $id = $this->request->getPost("id", "int");
 	    $post = new trn_post();
-
 		$data = $this->request->getPost();
 		if (!$this->validation($data)) {
 			return $this->response->redirect("post/edit");

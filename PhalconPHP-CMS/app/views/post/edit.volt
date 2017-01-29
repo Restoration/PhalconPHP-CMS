@@ -38,7 +38,7 @@
 						{{ form("post/save","method": "post") }}
 							<div id="alerts">{{ flashSession.output() }}</div>
 							<div class="col-md-12 col-sm-12 col-xs-12 form-group">
-								{{ text_field('post_title', 'class':'form-control', 'placeholder': 'Post Title','name':'post_title') }}
+								{{ text_field('post_title', 'class':'form-control', 'placeholder': 'Post Title','name':'post_title','value':post.post_title) }}
 							</div>
 
 							<div class="clearfix"></div>
@@ -105,7 +105,7 @@
 								</div>
 							</div>
 
-							<div id="editor-one" class="editor-wrapper"></div>
+							<div id="editor-one" class="editor-wrapper">{{post.post_message}}</div>
 
 							{{ text_area("post_message", 'name': 'post_message', 'id': 'descr','style':'display:none;') }}
 

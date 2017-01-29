@@ -43,4 +43,5 @@ class trn_post extends Model
 		$result = $query->execute();
 		return $result;
 	}
+
 }
