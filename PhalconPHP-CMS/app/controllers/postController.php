@@ -1,5 +1,4 @@
 <?php
-use Phalcon\Di as Di;
 use Phalcon\Mvc\Model as Model;
 use Phalcon\Validation as Validation;
 use Phalcon\Flash\Session as FlashSession;
@@ -11,42 +10,30 @@ class PostController extends ControllerBase
 {
 
 	public function initialize(){
-		$di = new Di();
-		// Set up the flash session service
-
-
     }
-
-	// Call this func to set json response enabled
-	public function setJsonResponse() {
-		$this->view->disable();
-		$this->_isJsonResponse = true;
-		$this->response->setContentType('application/json', 'UTF-8');
-	}
-
     public function indexAction()
     {
         $this->view->setTemplateAfter('common');
     }
-
+    // Post/index Page get Ajax list data
     public function ajaxGetPostAction()
     {
         $post = new trn_post();
         $response = new Response();
         $result = $post->getResult();
-		$status      = 200;
-		$description = 'OK';
-		$contentType = 'application/json';
-		$response->setStatusCode($status, $description);
-		$response->setContentType($contentType, 'UTF-8');
+		$response->setStatusCode(200,'OK');
+		$response->setContentType('application/json','UTF-8');
         $response->setContent(json_encode($result));
         return $response;
     }
 
-    public function editAction()
+    public function editAction($id)
     {
 	    $this->view->setTemplateAfter('common');
-
+	    $id = $this->request->getPost("id", "int");
+	    if(!empty($id)){
+		    exit();
+	    }
     }
 
 
@@ -77,13 +64,7 @@ class PostController extends ControllerBase
 		$this->flashSession->success(
 			"Post was updated successfully"
 		);
-
-		return $this->dispatcher->forward(
-			[
-				"controller" => "post",
-				"action"     => "index",
-			]
-		);
+		return $this->response->redirect("post/index");
 	}
 
 	private function validation($data)

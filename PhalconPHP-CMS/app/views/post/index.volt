@@ -26,12 +26,11 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+	                  <div id="alerts">{{ flashSession.output() }}</div>
                     <table id="postTable" class="table table-striped table-bordered bulk_action">
                       <thead>
                       </thead>
