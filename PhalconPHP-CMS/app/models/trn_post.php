@@ -46,16 +46,9 @@ class trn_post extends Model
             )
         ));
     }
-    public function getResult($action)
+    public function getResult()
     {
-		$sql = 'SELECT * FROM trn_post';
-	    if(empty($action)){
-		    $sql .= ' WHERE dltflg = 0 ';
-	    } else {
-		    // Trash
-			$sql .= ' WHERE dltflg = 1 ';
-	    }
-
+		$sql = 'SELECT * FROM trn_post WHERE dltflg = 0';
 		$query = new Query($sql,$this->getDI());
 		$result = $query->execute();
 		return $result;

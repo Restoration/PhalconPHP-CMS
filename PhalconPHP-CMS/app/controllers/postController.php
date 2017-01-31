@@ -14,17 +14,13 @@ class PostController extends ControllerBase
     public function indexAction()
     {
         $this->view->setTemplateAfter('common');
-        $action = $this->request->get("action");
-        $this->view->setVar("action",$action);
-
     }
     // Post/index Page get Ajax list data
     public function ajaxGetPostAction()
     {
-	    $action = $this->request->get("action");
         $post = new trn_post();
         $response = new Response();
-        $result = $post->getResult($action);
+        $result = $post->getResult();
 		$response->setStatusCode(200,'OK');
 		$response->setContentType('application/json','UTF-8');
         $response->setContent(json_encode($result));

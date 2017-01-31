@@ -72,61 +72,6 @@ jQuery(function($){
 		});
 		return false;
 	}
-	// Trash post view
-	var getDeletePost = function(){
-		$("#postTable").dataTable({
-			lengthChange: true,
-			searching: true,
-			ordering: true,
-			info: true,
-			paging: true,
-			stateSave: true,
-		    ajax: { url: '/PhalconPHP-CMS/post/ajaxGetPost&action=trash', dataSrc: ''},
-		    columns: [
-                {
-                    data: "id",
-                    'title' : '<input type="checkbox" id="check-all" name="id[]" class="flat">',
-                    render: function ( data, type, full, meta ) {
-                        return '<th><input type="checkbox" name="id[]" value="'+data+'" class="flat check"></th>';
-                    }
-                },
-				{ data: "user_id" , "title": "UserID" },
-				{ data: "post_title" , "title": "Title" },
-				{ data: "created_at" , "title": "Create date" },
-				{ data: "updated_at" , "title": "Update date" },
-                {
-                    data: "id",
-                    'title' : 'Post Delete',
-                    render: function ( data, type, full, meta ) {
-                        return '<a href="/PhalconPHP-CMS/post/index&id='+data+'">Delete</a>';
-                    }
-                },
-
-		    ],
-		    order: [[ 4, "ASC" ]],
-		    initComplete: function () {
-    			checkBoxEvent();
-			},
-			fnDrawCallback: function( oSettings ) {
-				checkBoxEvent();
-			}
-		});
-		return false;
-	}
-
-	function getUrlVars()
-	{
-	    var vars = [], hash;
-	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-	    for(var i = 0; i < hashes.length; i++)
-	    {
-	        hash = hashes[i].split('=');
-	        vars.push(hash[0]);
-	        vars[hash[0]] = hash[1];
-	    }
-	    return vars;
-	}
-
 
 
 	var userInterface = function(){
@@ -135,11 +80,7 @@ jQuery(function($){
 	}
 	var init = function(){
 		userInterface();
-		if(getUrlVars()['action'] == 'trash'){
-			getDeletePost();
-		} else {
-			getPost();
-		}
+		getPost();
 	}
 	init();
 });
