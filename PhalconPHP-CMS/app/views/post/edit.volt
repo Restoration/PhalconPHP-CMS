@@ -37,6 +37,7 @@
 					<div class="x_content">
 						{{ form("post/save","method": "post") }}
 							<div id="alerts">{{ flashSession.output() }}</div>
+							{{ hidden_field('id','value':post.id,'name':'id') }}
 							<div class="col-md-12 col-sm-12 col-xs-12 form-group">
 								{{ text_field('post_title', 'class':'form-control', 'placeholder': 'Post Title','name':'post_title','value':post.post_title) }}
 							</div>

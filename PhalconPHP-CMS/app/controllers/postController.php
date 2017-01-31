@@ -41,7 +41,7 @@ class PostController extends ControllerBase
 	    }
     }
 
-    public function saveAction($id)
+    public function saveAction()
     {
 	    if (!$this->request->isPost()) {
 		    return $this->response->redirect("post/edit");
@@ -55,6 +55,7 @@ class PostController extends ControllerBase
 	    $post->user_id = 1; //Temporary
 	    $post->post_title = $data['post_title'];
 	    $post->post_message = $data['post_message'];
+	    $post->dltflg = 0;
 
 		if ($post->save($data) === false) {
         	foreach ($post->getMessages() as $message) {

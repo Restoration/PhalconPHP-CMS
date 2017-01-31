@@ -5,7 +5,7 @@ jQuery(function($){
 	// edit
 	var updatePost = function(){
 		// Get EditorOne value
-		var txt = $('#editor-one').text();
+		var txt = $('#editor-one').html();
 		$('#descr').val(txt);
 	}
 
