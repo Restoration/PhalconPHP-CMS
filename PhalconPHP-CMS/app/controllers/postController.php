@@ -69,7 +69,7 @@ class PostController extends ControllerBase
 		return $this->response->redirect("post/index");
 	}
     /**
-     * Deletes an existing post
+     * Logical deletes an existing post
      */
     public function deleteAction()
     {
@@ -80,7 +80,8 @@ class PostController extends ControllerBase
 		$data = $this->request->getPost();
 	    for($i = 0; $i < count($data['id']); $i++){
 	    	$post = trn_post::findFirst($data['id'][$i]);
-		    if ($post->delete() == false) {
+	    	$post->dltflg = 1;
+		    if ($post->save() == false) {
 	    		foreach ($post->getMessages() as $message) {
 	        		$this->flashSession->error($message);
 	        		break;
@@ -95,30 +96,46 @@ class PostController extends ControllerBase
 	}
 
     /**
-     * Restore post
+     * Restore post or Delete post
      */
     public function restoreAction()
     {
 	    if (!$this->request->isPost()) {
 		    return $this->response->redirect("post/index&action=trash");
 	    }
+
 	    $post = new trn_post();
 		$data = $this->request->getPost();
-	    for($i = 0; $i < count($data['id']); $i++){
-	    	$post = trn_post::findFirst($data['id'][$i]);
-	    	$post->dltflg = 0;
-		    if ($post->save() == false) {
-	    		foreach ($post->getMessages() as $message) {
-	        		$this->flashSession->error($message);
-	        		break;
-	        	}
-				return $this->response->redirect("post/index&action=trash");
+
+		// Restore process
+		if($data['submit'] == 'Restore'){
+		    for($i = 0; $i < count($data['id']); $i++){
+		    	$post = trn_post::findFirst($data['id'][$i]);
+		    	$post->dltflg = 0;
+			    if ($post->save() == false) {
+		    		foreach ($post->getMessages() as $message) {
+		        		$this->flashSession->error($message);
+		        		break;
+		        	}
+					return $this->response->redirect("post/index&action=trash");
+			    }
 		    }
-	    }
+		} else {
+		    for($i = 0; $i < count($data['id']); $i++){
+			    $post = trn_post::findFirst($data['id'][$i]);
+			    if ($post->delete() == false) {
+		    		foreach ($post->getMessages() as $message) {
+		        		$this->flashSession->error($message);
+		        		break;
+		        	}
+					return $this->response->redirect("post/index&action=trash");
+			    }
+		    }
+		}
 		$this->flashSession->success(
 			"Post was updated successfully"
 		);
-		return $this->response->redirect("post/index");
+		return $this->response->redirect("post/index&action=trash");
 	}
 
 	private function validation($data)

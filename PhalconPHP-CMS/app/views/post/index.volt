@@ -3,7 +3,11 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
+              {% if action === "trash" %}
+                <h3>Trash</h3>
+              {% else %}
                 <h3>Post</h3>
+              {% endif %}
               </div>
             </div>
 
@@ -35,10 +39,6 @@
 	                          </li>
 	                        </ul>
 						{% endif %}
-
-
-
-
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -48,8 +48,8 @@
 					{% if action === "trash" %}
 						{{ form("post/restore","method": "post") }}
 						<div class="col-lg-offset-9">
-							{{ submit_button('Restore','type':'submit','class':'btn btn-success','id':'postRestore') }}
-							{{ submit_button('Delete','type':'submit','class':'btn btn-danger','id':'postDelete') }}
+							{{ submit_button('Restore','type':'submit','class':'btn btn-success','id':'postRestore','name':'submit') }}
+							{{ submit_button('Delete','type':'submit','class':'btn btn-danger','id':'postDelete','name':'submit') }}
 						</div>
 					{% else %}
 						{{ form("post/delete","method": "post") }}

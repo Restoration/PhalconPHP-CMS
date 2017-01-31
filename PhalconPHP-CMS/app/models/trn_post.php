@@ -39,26 +39,19 @@ class trn_post extends Model
                 'format' => 'Y-m-d H:i:s'
             ),
         )));
-        $this->addBehavior(new SoftDelete(
-            array(
-                'field' => 'dltflg',
-                'value' => trn_post::DELETED,
-            )
-        ));
     }
     public function getResult($action)
     {
 		$sql = 'SELECT * FROM trn_post';
 	    if(empty($action)){
-		    $sql .= ' WHERE dltflg = 0 ';
+		    $sql .= ' WHERE dltflg = '.trn_post::NOT_DELETED;
 	    } else {
 		    // Trash
-			$sql .= ' WHERE dltflg = 1 ';
+			$sql .= ' WHERE dltflg = '.trn_post::DELETED;
 	    }
 
 		$query = new Query($sql,$this->getDI());
 		$result = $query->execute();
 		return $result;
 	}
-
 }
