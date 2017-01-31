@@ -30,13 +30,19 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-	                  <div id="alerts">{{ flashSession.output() }}</div>
+	                <div id="alerts">{{ flashSession.output() }}</div>
+	                {{ form("post/delete","method": "post") }}
+					<div class="col-md-offset-11">
+						{{ submit_button('Delete','type':'submit','class':'btn btn-success','id':'postDelete') }}
+					</div>
+					<div class="ln_solid"></div>
                     <table id="postTable" class="table table-striped table-bordered bulk_action">
                       <thead>
                       </thead>
                       <tbody>
                       </tbody>
                     </table>
+					{{ endForm() }}
                   </div>
                 </div>
               </div>

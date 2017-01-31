@@ -10,6 +10,28 @@ jQuery(function($){
 	}
 
 	// index
+	var checkBoxEvent  = function(){
+		$("input.flat").iCheck({
+			checkboxClass: "icheckbox_flat-green",
+    	});
+		var checkAll = $('input#check-all');
+		var checkboxes = $('input.check');
+		checkAll.on('ifChecked ifUnchecked', function(event) {
+    		if (event.type == 'ifChecked') {
+	    		checkboxes.iCheck('check');
+	    	} else {
+		    	checkboxes.iCheck('uncheck');
+		    }
+		});
+		checkboxes.on('ifChanged', function(event){
+			if(checkboxes.filter(':checked').length == checkboxes.length) {
+				checkAll.prop('checked', 'checked');
+			} else {
+				checkAll.removeProp('checked');
+			}
+			checkAll.iCheck('update');
+		});
+	}
 	var getPost = function(){
 		$("#postTable").dataTable({
 			lengthChange: true,
@@ -24,7 +46,7 @@ jQuery(function($){
                     data: "id",
                     'title' : '<input type="checkbox" id="check-all" name="id[]" class="flat">',
                     render: function ( data, type, full, meta ) {
-                        return '<th><input type="checkbox" id="check-all" name="id[]" data-id="'+data+'" class="flat"></th>';
+                        return '<th><input type="checkbox" name="id[]" value="'+data+'" class="flat check"></th>';
                     }
                 },
 				{ data: "user_id" , "title": "UserID" },
@@ -42,16 +64,19 @@ jQuery(function($){
 		    ],
 		    order: [[ 4, "ASC" ]],
 		    initComplete: function () {
-			    $("input.flat").iCheck({
-					checkboxClass: "icheckbox_flat-green",
-    			});
+    			checkBoxEvent();
+			},
+			fnDrawCallback: function( oSettings ) {
+				checkBoxEvent();
 			}
 		});
 		return false;
 	}
 
+
 	var userInterface = function(){
 		$(document).on('click','#postSubmit',updatePost);
+
 	}
 	var init = function(){
 		userInterface();

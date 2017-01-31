@@ -64,6 +64,31 @@ class PostController extends ControllerBase
 		);
 		return $this->response->redirect("post/index");
 	}
+    /**
+     * Deletes an existing post
+     */
+    public function deleteAction()
+    {
+	    if (!$this->request->isPost()) {
+		    return $this->response->redirect("post/index");
+	    }
+	    $post = new trn_post();
+		$data = $this->request->getPost();
+	    for($i = 0; $i < count($data['id']); $i++){
+	    	$post = trn_post::findFirst($data['id'][$i]);
+		    if ($post->delete() == false) {
+	    		foreach ($post->getMessages() as $message) {
+	        		$this->flashSession->error($message);
+	        		break;
+	        	}
+				return $this->response->redirect("post/index");
+		    }
+	    }
+		$this->flashSession->success(
+			"Post was updated successfully"
+		);
+		return $this->response->redirect("post/index");
+	}
 
 	private function validation($data)
 	{
