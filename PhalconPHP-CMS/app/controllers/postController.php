@@ -138,6 +138,7 @@ class PostController extends ControllerBase
 		return $this->response->redirect("post/index&action=trash");
 	}
 
+
 	private function validation($data)
 	{
 		$validation = new Validation();

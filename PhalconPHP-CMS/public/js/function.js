@@ -57,7 +57,7 @@ jQuery(function($){
                     data: "id",
                     'title' : 'Post Edit',
                     render: function ( data, type, full, meta ) {
-                        return '<a href="/PhalconPHP-CMS/post/edit&id='+data+'">Edit</a>';
+                        return '<a href="/PhalconPHP-CMS/post/edit&id='+data+'" class="btn btn-success">Edit</a>';
                     }
                 },
 
@@ -98,7 +98,7 @@ jQuery(function($){
                     data: "id",
                     'title' : 'Post Delete',
                     render: function ( data, type, full, meta ) {
-                        return '<a href="/PhalconPHP-CMS/post/index&id='+data+'">Delete</a>';
+                        return '<button type="submit" class="btn btn-danger" name="id[]" value="'+data+'" >Delete</button>';
                     }
                 },
 
