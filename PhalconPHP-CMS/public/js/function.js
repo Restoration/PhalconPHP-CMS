@@ -40,7 +40,7 @@ jQuery(function($){
 			info: true,
 			paging: true,
 			stateSave: true,
-		    ajax: { url: '/PhalconPHP-CMS/post/ajaxGetPost', dataSrc: ''},
+			ajax: { url: '/PhalconPHP-CMS/post/ajaxGetPost', dataSrc: ''},
 		    columns: [
                 {
                     data: "id",
@@ -68,10 +68,19 @@ jQuery(function($){
 			},
 			fnDrawCallback: function( oSettings ) {
 				checkBoxEvent();
-			}
+			},
+			fnInitComplete: function(settings, json){
+				console.log(json);
+				if (Object.keys(json).length === 0) {
+					$('#postRestore').attr('disabled',true);
+					$('#postDelete').attr('disabled',true);
+				}
+			},
+
 		});
 		return false;
 	}
+
 	// Trash post view
 	var getDeletePost = function(){
 		$("#postTable").dataTable({
@@ -109,7 +118,14 @@ jQuery(function($){
 			},
 			fnDrawCallback: function( oSettings ) {
 				checkBoxEvent();
-			}
+			},
+			fnInitComplete: function(settings, json){
+				console.log(json);
+				if (Object.keys(json).length === 0) {
+					$('#postRestore').attr('disabled',true);
+					$('#postDelete').attr('disabled',true);
+				}
+			},
 		});
 		return false;
 	}

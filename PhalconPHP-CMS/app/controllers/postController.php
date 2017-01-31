@@ -78,6 +78,12 @@ class PostController extends ControllerBase
 	    }
 	    $post = new trn_post();
 		$data = $this->request->getPost();
+	    if(empty($data['id'])){
+			$this->flashSession->error(
+				"Please check the checkbox"
+			);
+			return $this->response->redirect("post/index");
+	    }
 	    for($i = 0; $i < count($data['id']); $i++){
 	    	$post = trn_post::findFirst($data['id'][$i]);
 	    	$post->dltflg = 1;
@@ -103,10 +109,14 @@ class PostController extends ControllerBase
 	    if (!$this->request->isPost()) {
 		    return $this->response->redirect("post/index&action=trash");
 	    }
-
 	    $post = new trn_post();
 		$data = $this->request->getPost();
-
+	    if(empty($data['id'])){
+			$this->flashSession->error(
+				"Please check the checkbox"
+			);
+			return $this->response->redirect("post/index&action=trash");
+	    }
 		// Restore process
 		if($data['submit'] == 'Restore'){
 		    for($i = 0; $i < count($data['id']); $i++){
