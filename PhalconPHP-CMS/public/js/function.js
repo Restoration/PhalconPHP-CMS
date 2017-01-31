@@ -44,7 +44,7 @@ jQuery(function($){
 		    columns: [
                 {
                     data: "id",
-                    'title' : '<input type="checkbox" id="check-all" name="id[]" class="flat">',
+                    'title' : '<input type="checkbox" id="check-all" name="check-all[]" class="flat">',
                     render: function ( data, type, full, meta ) {
                         return '<th><input type="checkbox" name="id[]" value="'+data+'" class="flat check"></th>';
                     }
@@ -85,7 +85,7 @@ jQuery(function($){
 		    columns: [
                 {
                     data: "id",
-                    'title' : '<input type="checkbox" id="check-all" name="id[]" class="flat">',
+                    'title' : '<input type="checkbox" id="check-all" name="check-all[]" class="flat">',
                     render: function ( data, type, full, meta ) {
                         return '<th><input type="checkbox" name="id[]" value="'+data+'" class="flat check"></th>';
                     }

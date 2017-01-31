@@ -45,13 +45,14 @@
                   </div>
                   <div class="x_content">
 	                <div id="alerts">{{ flashSession.output() }}</div>
-	                {{ form("post/delete","method": "post") }}
 					{% if action === "trash" %}
+						{{ form("post/restore","method": "post") }}
 						<div class="col-lg-offset-9">
 							{{ submit_button('Restore','type':'submit','class':'btn btn-success','id':'postRestore') }}
 							{{ submit_button('Delete','type':'submit','class':'btn btn-danger','id':'postDelete') }}
 						</div>
 					{% else %}
+						{{ form("post/delete","method": "post") }}
 						<div class="col-md-offset-11">
 							{{ submit_button('Delete','type':'submit','class':'btn btn-danger','id':'postDelete') }}
 						</div>
