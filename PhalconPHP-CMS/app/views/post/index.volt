@@ -26,14 +26,14 @@
 
 						{% if action === "trash" %}
 	                        <ul class="dropdown-menu" role="menu">
-	                          <li><a href="#">{{ link_to('post/index','List') }}</a>
+	                          <li>{{ link_to('post/index','List') }}
 	                          </li>
 	                          <li><a href="#">Settings 2</a>
 	                          </li>
 	                        </ul>
 						{% else %}
 	                        <ul class="dropdown-menu" role="menu">
-	                          <li><a href="#">{{ link_to('post/index&action=trash','Trash') }}</a>
+	                          <li>{{ link_to('post/index&action=trash','Trash') }}
 	                          </li>
 	                          <li><a href="#">Settings 2</a>
 	                          </li>

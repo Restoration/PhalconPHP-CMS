@@ -7,7 +7,8 @@
     <!-- iCheck -->
     {{- stylesheet_link("public/vendors/iCheck/skins/flat/green.css",true) -}}
 
-
+    <!-- Animate.css -->
+    {{- stylesheet_link("public/vendors/animate.css/animate.min.css",true) -}}
 
     <!-- bootstrap-wysiwyg -->
     {{- stylesheet_link("public/vendors/google-code-prettify/bin/prettify.min.css",true) -}}
@@ -29,3 +30,4 @@
 
     <!-- Custom Theme Style -->
     {{- stylesheet_link("public/css/custom.min.css",true) -}}
+
