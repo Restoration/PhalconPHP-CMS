@@ -28,6 +28,14 @@ class LoginController extends ControllerBase
         );
     }
 
+	public function logoutAction()
+	{
+		$this->session->remove('auth');
+		$this->flashSession->success('Goodbye!');
+		return $this->response->redirect("login/index");
+	}
+
+
 	// Create Account
     public function signinAction()
     {
