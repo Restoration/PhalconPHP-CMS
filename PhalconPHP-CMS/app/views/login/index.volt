@@ -8,11 +8,12 @@
           <section class="login_content">
             {{ form("login/login","method": "post") }}
               <h1>Login Form</h1>
+              <div id="alerts">{{ flashSession.output() }}</div>
               <div>
                 {{ text_field('username', 'class':'form-control', 'placeholder': 'Username','name':'username','value':post.username,'required':'required') }}
               </div>
               <div>
-                {{ text_field('password', 'class':'form-control', 'placeholder': 'Password','name':'username','value':post.username,'required':'required') }}
+                {{ password_field('password', 'class':'form-control', 'placeholder': 'Password','name':'username','value':post.username,'required':'required') }}
               </div>
               <div>
                 {{ submit_button('Log in','type':'submit','class':'btn btn-default submit','id':'loginSubmit') }}
@@ -50,7 +51,7 @@
                 {{ text_field('email', 'class':'form-control', 'placeholder': 'Email','name':'create[email]','value':create.username,'required':'required') }}
               </div>
               <div>
-                {{ text_field('password', 'class':'form-control', 'placeholder': 'Password','name':'create[password]','value':'','required':'required') }}
+                {{ password_field('password', 'class':'form-control', 'placeholder': 'Password','name':'create[password]','value':'','required':'required') }}
               </div>
               <div>
                 {{ submit_button('Submit','type':'submit','class':'btn btn-default submit','id':'signinSubmit') }}
