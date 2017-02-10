@@ -28,6 +28,32 @@ class LoginController extends ControllerBase
         );
     }
 
+    public function loginAction()
+    {
+	    if ($this->request->isPost()) {
+	        $username = $this->request->getPost("username");
+	        $password = $this->request->getPost("password");
+	        $post['username'] = $username;
+	        $post['password'] = $password;
+			if (!$this->loginValidation($post)) {
+				return $this->response->redirect("login/index");
+		    }
+	        $user = mst_user::findFirst("username = '$username'");
+	        if ($user) {
+	            if ($this->security->checkHash($password, $user->password)) {
+		            $this->_registerSession($user);
+					return $this->response->redirect("index");
+	            }
+	        }
+	        $this->security->hash(rand());
+			$this->flashSession->error(
+					"Wrong username/password"
+			);
+	        return $this->response->redirect("login/index");
+        }
+        return $this->response->redirect("login/index");
+    }
+
 	public function logoutAction()
 	{
 		$this->session->remove('auth');
@@ -67,6 +93,34 @@ class LoginController extends ControllerBase
 		return $this->response->redirect("login/index");
     }
 
+	private function loginValidation($data)
+	{
+		$validation = new Validation();
+		$validation->add(
+		    "username",
+		    new PresenceOf(
+		        [
+		            "message" => "The username is required",
+		        ]
+		    )
+		);
+		$validation->add(
+		    "password",
+		    new PresenceOf(
+		        [
+		            "message" => "The password is required",
+		        ]
+		    )
+		);
+		$messages = $validation->validate($data);
+		if (count($messages)) {
+		    foreach ($messages as $message) {
+		        $this->flashSession->error($message);
+		    }
+		    return false;
+		}
+	    return true;
+	}
 
 	private function signinValidation($data)
 	{
@@ -101,6 +155,14 @@ class LoginController extends ControllerBase
 		    new Email(
 		        [
 		            "message" => "The e-mail is not valid",
+		        ]
+		    )
+		);
+		$validation->add(
+		    "password",
+		    new PresenceOf(
+		        [
+		            "message" => "The password is required",
 		        ]
 		    )
 		);

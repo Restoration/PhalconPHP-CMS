@@ -10,10 +10,10 @@
               <h1>Login Form</h1>
               <div id="alerts">{{ flashSession.output() }}</div>
               <div>
-                {{ text_field('username', 'class':'form-control', 'placeholder': 'Username','name':'username','value':post.username,'required':'required') }}
+                {{ text_field('username', 'class':'form-control', 'placeholder': 'Username','name':'username','value':username) }}
               </div>
               <div>
-                {{ password_field('password', 'class':'form-control', 'placeholder': 'Password','name':'username','value':post.username,'required':'required') }}
+                {{ password_field('password', 'class':'form-control', 'placeholder': 'Password','name':'password') }}
               </div>
               <div>
                 {{ submit_button('Log in','type':'submit','class':'btn btn-default submit','id':'loginSubmit') }}
