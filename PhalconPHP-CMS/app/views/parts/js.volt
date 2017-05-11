@@ -58,6 +58,9 @@
 	{{ javascript_include("public/vendors/jszip/dist/jszip.min.js") }}
 	{{ javascript_include("public/vendors/pdfmake/build/pdfmake.min.js") }}
 	{{ javascript_include("public/vendors/pdfmake/build/vfs_fonts.js") }}
+
+    <!-- Original Scripts -->
+    {{ javascript_include("public/js/function.js") }}
 {% elseif router.getRewriteUri() === "/post/edit" %}
 
     <!-- bootstrap-wysiwyg -->
@@ -79,11 +82,18 @@
     <!-- starrr -->
     {{ javascript_include("public/vendors/starrr/dist/starrr.js") }}
 
+    <!-- Original Scripts -->
+    {{ javascript_include("public/js/function.js") }}
+
+{% elseif router.getRewriteUri() === "/readme" %}
+
+    {{ javascript_include("public/js/marked.min.js") }}
+    {{ javascript_include("public/js/readme.js") }}
 
 {% endif %}
+
+
 
     <!-- Custom Theme Scripts -->
     {{ javascript_include("public/js/custom.min.js") }}
 
-    <!-- Original Scripts -->
-    {{ javascript_include("public/js/function.js") }}
