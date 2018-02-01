@@ -35,6 +35,7 @@
                     <ul class="nav child_menu">
                       <li>{{ link_to('post/index','List') }}</li>
                       <li>{{ link_to('post/edit','New Post') }}</li>
+                      <li>{{ link_to('category/index','Category') }}</li>
                       <!--
                       <li>{{ link_to('category/index','Category') }}</li>
                       <li>{{ link_to('tag/index','Tag') }}</li>
