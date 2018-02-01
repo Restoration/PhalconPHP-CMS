@@ -28,6 +28,7 @@
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li>{{ link_to('index/index','Dashboard') }}</li>
+                      <li>{{ link_to('readme/index','README') }}</li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Post <span class="fa fa-chevron-down"></span></a>
