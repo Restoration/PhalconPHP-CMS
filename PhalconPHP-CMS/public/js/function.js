@@ -143,8 +143,6 @@ jQuery(function($){
 	    return vars;
 	}
 
-
-
 	var userInterface = function(){
 		$(document).on('click','#postSubmit',updatePost);
 
@@ -158,4 +156,49 @@ jQuery(function($){
 		}
 	}
 	init();
+
+
+	var getCategory = function(){
+		$("#categoryTable").dataTable({
+			lengthChange: true,
+			searching: true,
+			ordering: true,
+			info: true,
+			paging: true,
+			stateSave: true,
+			ajax: { url: '/PhalconPHP-CMS/category/ajaxGetCategory', dataSrc: ''},
+		    columns: [
+                {
+                    data: "category_id",
+                    'title' : '<input type="checkbox" id="check-all" name="check-all[]" class="flat">',
+                    render: function ( data, type, full, meta ) {
+                        return '<th><input type="checkbox" name="id[]" value="'+data+'" class="flat check"></th>';
+                    }
+                },
+				{ data: "category_id" , "title": "Category ID" },
+				{ data: "category_name" , "title": "Category name" },
+				{ data: "created_at" , "title": "Create date" },
+				{ data: "updated_at" , "title": "Update date" },
+                {
+                    data: "category_id",
+                    'title' : 'Category Edit',
+                    render: function ( data, type, full, meta ) {
+                        return '<a href="/PhalconPHP-CMS/category/edit&id='+data+'" class="btn btn-success">Edit</a>';
+                    }
+                },
+
+		    ],
+		    order: [[ 4, "ASC" ]],
+		    initComplete: function () {
+    			checkBoxEvent();
+			},
+			fnDrawCallback: function( oSettings ) {
+				checkBoxEvent();
+			},
+			"bDestroy": true,
+		});
+		return false;
+	}
+	getCategory();
+	//getCategory.destroy();
 });

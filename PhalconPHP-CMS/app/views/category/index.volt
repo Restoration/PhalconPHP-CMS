@@ -103,12 +103,7 @@
               <div class="x_content">
 				<div id="alerts">{{ flashSession.output() }}</div>
 					<div class="ln_solid"></div>
-					<table id="categoryTable" class="table table-striped table-bordered bulk_action">
-						<thead>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+					<table id="categoryTable" class="table table-striped table-bordered bulk_action"></table>
 				{{ endForm() }}
               </div>
             </div>
