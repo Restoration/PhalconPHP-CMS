@@ -35,9 +35,9 @@ class categoryController extends ControllerBase
 	    }
 	    $category = new mst_category();
 		$data = $this->request->getPost();
-		//if (!$this->validation($data)) {
-			//return $this->response->redirect("category/index");
-	    //}
+		if (!$this->validation($data)) {
+			return $this->response->redirect("category/index");
+	    }
 	    $category->category_id = $id;
 	    $category->category_name = $data['category_name'];;
 	    $category->category_slug = $data['category_slug'];
@@ -58,5 +58,45 @@ class categoryController extends ControllerBase
 			"Category was updated successfully"
 		);
 		return $this->response->redirect("category/index");
+	}
+
+	private function validation($data)
+	{
+		$validation = new Validation();
+		$validation->add(
+		    "category_name",
+			new StringLength([
+			     'max' => 60,
+			     'min' => 1,
+			     'messageMaximum' => 'We don\'t like really long Category Name',
+			     'messageMinimum' => 'We want more than just their initials'
+			 ])
+		);
+
+		$validation->add(
+		    "category_slug",
+			new StringLength([
+			     'max' => 60,
+			     'min' => 1,
+			     'messageMaximum' => 'We don\'t like really long Category Slug',
+			     'messageMinimum' => 'We want more than just their initials'
+			 ])
+		);
+
+		$validation->add(
+		    "category_description",
+			new StringLength([
+			     'max' => 200,
+			     'messageMaximum' => 'We don\'t like really long Category Description',
+			 ])
+		);
+		$messages = $validation->validate($data);
+		if (count($messages)) {
+		    foreach ($messages as $message) {
+		        $this->flashSession->error($message);
+		    }
+		    return false;
+		}
+	    return true;
 	}
 }

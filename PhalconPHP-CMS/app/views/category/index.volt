@@ -58,7 +58,7 @@
                       	<label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <br />(200 chars max) :
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							{{ text_area('category_description', 'class': 'form-control' , ' name':'category_description','required':'required','id':'category-description','id':'category-description','data-parsley-trigger':'keyup','data-parsley-minlength':'0','data-parsley-maxlength':'200','data-parsley-minlength-message':'Enter within 100 characters.','data-parsley-validation-threshold','10','rows':'6')}}
+							{{ text_area('category_description', 'class': 'form-control' , ' name':'category_description','id':'category-description','id':'category-description','data-parsley-trigger':'keyup','data-parsley-minlength':'0','data-parsley-maxlength':'200','data-parsley-minlength-message':'Enter within 100 characters.','data-parsley-validation-threshold','10','rows':'6')}}
 
                         </div>
                       </div>
