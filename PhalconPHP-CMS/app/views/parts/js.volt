@@ -13,10 +13,6 @@
     <!-- bootstrap-daterangepicker -->
     {{ javascript_include("public/vendors/moment/min/moment.min.js") }}
     {{ javascript_include("public/vendors/bootstrap-daterangepicker/daterangepicker.js") }}
-
-
-{% if router.getRewriteUri() === "/index/index" or router.getRewriteUri() === "/index" %}
-
     <!-- Chart.js -->
     {{ javascript_include("public/vendors/Chart.js/dist/Chart.min.js") }}
     <!-- gauge.js -->
@@ -39,9 +35,6 @@
     {{ javascript_include("public/vendors/jqvmap/dist/jquery.vmap.js") }}
     {{ javascript_include("public/vendors/jqvmap/dist/maps/jquery.vmap.world.js") }}
     {{ javascript_include("public/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js") }}
-
-
-{% elseif router.getRewriteUri() === "/post/index" %}
     <!-- Datatables -->
 	{{ javascript_include("public/vendors/datatables.net/js/jquery.dataTables.min.js") }}
 	{{ javascript_include("public/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js") }}
@@ -59,10 +52,6 @@
 	{{ javascript_include("public/vendors/pdfmake/build/pdfmake.min.js") }}
 	{{ javascript_include("public/vendors/pdfmake/build/vfs_fonts.js") }}
 
-    <!-- Original Scripts -->
-    {{ javascript_include("public/js/function.js") }}
-{% elseif router.getRewriteUri() === "/post/edit" %}
-
     <!-- bootstrap-wysiwyg -->
     {{ javascript_include("public/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}
     {{ javascript_include("public/vendors/jquery.hotkeys/jquery.hotkeys.js") }}
@@ -74,7 +63,7 @@
     <!-- Select2 -->
     {{ javascript_include("public/vendors/select2/dist/js/select2.full.min.js") }}
     <!-- Parsley -->
-    <!-- {{ javascript_include("public/vendors/parsleyjs/dist/parsley.min.js") }} -->
+    {{ javascript_include("public/vendors/parsleyjs/dist/parsley.min.js") }}
     <!-- Autosize -->
    {{ javascript_include("public/vendors/autosize/dist/autosize.min.js") }}
     <!-- jQuery autocomplete -->
@@ -82,18 +71,13 @@
     <!-- starrr -->
     {{ javascript_include("public/vendors/starrr/dist/starrr.js") }}
 
-    <!-- Original Scripts -->
-    {{ javascript_include("public/js/function.js") }}
 
-{% elseif router.getRewriteUri() === "/readme" %}
-
-    {{ javascript_include("public/js/marked.min.js") }}
-    {{ javascript_include("public/js/readme.js") }}
-
-{% endif %}
-
-
+    <!-- {{ javascript_include("public/js/marked.min.js") }}-->
+    <!-- {{ javascript_include("public/js/readme.js") }} -->
 
     <!-- Custom Theme Scripts -->
     {{ javascript_include("public/js/custom.min.js") }}
 
+
+    <!-- Original Scripts -->
+    {{ javascript_include("public/js/function.js") }}

@@ -200,5 +200,5 @@ jQuery(function($){
 		return false;
 	}
 	getCategory();
-	//getCategory.destroy();
+	$('#categoryForm').parsley();
 });

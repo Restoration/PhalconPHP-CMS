@@ -36,10 +36,10 @@
 				<div id="alerts">{{ flashSession.output() }}</div>
 					<div class="ln_solid"></div>
 
-					{{ form("category/save","method": "post","class" : "form-horizontal form-label-left") }}
+					{{ form("category/save","method": "post","class" : "form-horizontal form-label-left" , "id":"categoryForm") }}
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category-name">Category Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category-name">Category Name <span class="required">*</span><br />(20 chars max)
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="category-name" required="required" class="form-control col-md-7 col-xs-12" name="category_name">
@@ -47,15 +47,16 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">Slug <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">Slug <span class="required">*</span><br />(60 chars max)
+
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="slug" class="form-control col-md-7 col-xs-12" name="category_slug">
+                          <input type="text" id="slug" class="form-control col-md-7 col-xs-12" name="category_slug" required="required">
                         </div>
                       </div>
 
                       <div class="form-group">
-                      	<label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <br />(20 chars min, 100 max) :
+                      	<label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <br />(100 chars max) :
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							<textarea id="message" name="category_description" required="required" class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" rows="6"></textarea>
