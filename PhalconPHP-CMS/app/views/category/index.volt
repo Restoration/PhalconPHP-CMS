@@ -39,27 +39,27 @@
 					{{ form("category/save","method": "post","class" : "form-horizontal form-label-left" , "id":"categoryForm") }}
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category-name">Category Name <span class="required">*</span><br />(20 chars max)
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category-name">Category Name <span class="required">*</span><br />(60 chars max)
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="category-name" required="required" class="form-control col-md-7 col-xs-12" name="category_name">
+                          {{ text_field('category_name', 'class': 'form-control col-md-7 col-xs-12' , ' name':'category_name','required':'required','id':'category-name','data-parsley-trigger':'keyup','data-parsley-minlength':'1','data-parsley-maxlength':'60','data-parsley-minlength-message':'Enter within 60 characters.')}}
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">Slug <span class="required">*</span><br />(60 chars max)
-
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="slug" class="form-control col-md-7 col-xs-12" name="category_slug" required="required">
+                          {{ text_field('category_slug', 'class': 'form-control col-md-7 col-xs-12' , ' name':'category_slug','required':'required','id':'category-slug','data-parsley-trigger':'keyup','data-parsley-minlength':'1','data-parsley-maxlength':'60','data-parsley-minlength-message':'Enter within 60 characters.')}}
                         </div>
                       </div>
 
                       <div class="form-group">
-                      	<label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <br />(100 chars max) :
+                      	<label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <br />(200 chars max) :
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							<textarea id="message" name="category_description" required="required" class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" rows="6"></textarea>
+							{{ text_area('category_description', 'class': 'form-control' , ' name':'category_description','required':'required','id':'category-description','id':'category-description','data-parsley-trigger':'keyup','data-parsley-minlength':'0','data-parsley-maxlength':'200','data-parsley-minlength-message':'Enter within 100 characters.','data-parsley-validation-threshold','10','rows':'6')}}
+
                         </div>
                       </div>
 
