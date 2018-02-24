@@ -60,6 +60,16 @@ class categoryController extends ControllerBase
 		return $this->response->redirect("category/index");
 	}
 
+    public function editAction()
+    {
+	    $this->view->setTemplateAfter('common');
+	    $id = $this->request->get("id", "int");
+	    if(!empty($id)){
+		    $result = mst_category::findFirst($id);
+		    $this->view->setVar("category",$result);
+	    }
+    }
+
 	private function validation($data)
 	{
 		$validation = new Validation();
