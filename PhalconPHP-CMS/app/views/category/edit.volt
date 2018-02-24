@@ -37,7 +37,9 @@
 					<div class="ln_solid"></div>
 
 					{{ form("category/save","method": "post","class" : "form-horizontal form-label-left" , "id":"categoryForm") }}
+
 					{{hidden_field('category_id', 'value':category.category_id)}}
+					{{hidden_field('action', 'value':'edit')}}
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category-name">Category Name <span class="required">*</span><br />(60 chars max)
                         </label>

@@ -30,27 +30,35 @@ class categoryController extends ControllerBase
 
     public function saveAction()
     {
+
 	    if (!$this->request->isPost()) {
+		    if($data['action'] == 'edit'){
+			    return $this->response->redirect("category/edit");
+		    }
 		    return $this->response->redirect("category/index");
 	    }
 	    $category = new mst_category();
 		$data = $this->request->getPost();
 		if (!$this->validation($data)) {
+		    if($data['action'] == 'edit'){
+			    return $this->response->redirect("category/edit");
+		    }
 			return $this->response->redirect("category/index");
 	    }
-	    $category->category_id = $id;
-	    $category->category_name = $data['category_name'];;
+	    $category->category_id = $data['category_id'];
+	    $category->category_name = $data['category_name'];
 	    $category->category_slug = $data['category_slug'];
 	    $category->category_description = $data['category_description'];
-	    /*
-	    category_parent_id
-	    */
+	    $category->category_parent_id = $data['category_parent_id'];
 	    $category->dltflg = 0;
 
 		if ($category->save($data) === false) {
         	foreach ($category->getMessages() as $message) {
 	        	$this->flashSession->error($message);
 	        }
+		    if($data['action'] == 'edit'){
+			    return $this->response->redirect("category/edit");
+		    }
 	        return $this->response->redirect("category/index");
 		}
 
